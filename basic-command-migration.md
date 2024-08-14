@@ -59,3 +59,31 @@ php artisan migrate:field-scanning
 ```
 
 Dengan menggunakan salah satu dari pendekatan di atas, kamu bisa fokus menjalankan migrasi yang hanya ada di folder `field_scanning`.
+
+## CREATE MIGRATION
+
+Ya, Anda bisa membuat file migrasi di folder tertentu menggunakan perintah:
+
+```bash
+php artisan make:migration create_table_field_scanning_problematic_vehicles --create=field_scanning_problematic_vehicles --path=/database/migrations/field_scanning
+```
+
+Perintah ini akan membuat file migrasi di folder `database/migrations/field_scanning`.
+
+Pastikan direktori `field_scanning` sudah ada di dalam jalur `database/migrations/`; jika tidak, Laravel akan menampilkan error. Jika direktori tersebut belum ada, Anda bisa membuatnya sebelum menjalankan perintah:
+
+```bash
+mkdir -p database/migrations/field_scanning
+```
+
+## ROLLBACK MIGRATION
+
+Untuk melakukan rollback pada migrasi yang ada di folder tertentu, seperti `field_scanning`, Anda bisa menggunakan perintah berikut:
+
+```bash
+php artisan migrate:rollback --path=/database/migrations/field_scanning
+```
+
+Perintah ini akan mengembalikan (rollback) hanya migrasi yang berada di folder `field_scanning`, tanpa mempengaruhi migrasi lain di folder default `database/migrations`.
+
+Jadi, jika Anda hanya ingin mengembalikan migrasi yang ada di folder tersebut, pastikan untuk menyertakan opsi `--path` seperti di atas.
